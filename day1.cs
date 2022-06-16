@@ -8,29 +8,37 @@ namespace ConsoleApp1
         static void Main(string[] args)
         {
             int[] numbers = new int[2000];
-            int i = 0;
-            int prev;
+            int j = 0;
             int count = 0;
-            //string[] data = System.IO.File.ReadAllLines(@"C:\Users\quintin\Desktop\adventofCode\data.txt");
-            using (var file = new StreamReader(@"C:\Users\quintin\Desktop\adventofCode\data.txt"))
+            using (var file = new StreamReader(@"C:\Users\quintin\Documents\GitHub\Advent-of-Code-2021\data.txt"))
             {
                 string line;
                 while ((line = file.ReadLine()) != null)
                 {
-                    numbers[i] = int.Parse(line);
-                    i++;
+                    numbers[j] = int.Parse(line);
+                    j++;
                 }
             }
-            prev = numbers[0];
-            foreach(int n in numbers)
+
+            for (int i = 1; i < numbers.Length; i++)
             {
-                if (n > prev)
+                if (numbers[i]>numbers[i-1])
                 {
                     count += 1;
                 }
-                prev = n;
             }
-            Console.WriteLine(count);
+
+            Console.WriteLine("Part 1: " + count);
+            count = 0;
+            for (int i = 3; i < numbers.Length; i++)
+            {
+                if (numbers[i] > numbers[i - 3])
+                {
+                    count += 1;
+                }
+            }
+
+            Console.WriteLine("Part 2: " + count);
         }
     }
 }
