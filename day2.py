@@ -1,3 +1,4 @@
+INPUT_S = '''\
 forward 4
 down 8
 down 3
@@ -998,3 +999,34 @@ down 2
 forward 4
 forward 4
 forward 8
+'''
+
+position = depth = 0
+
+for line in INPUT_S.splitlines():
+    command, n_s = line.split()
+    n = int(n_s)
+    if command == 'up':
+        depth -= n
+    elif command == 'down':
+        depth += n
+    elif command == 'forward':
+        position += n
+
+
+print(f'Part 1: {position*depth}')
+
+aim = position = depth = 0
+for line in INPUT_S.splitlines():
+    command, n_s = line.split()
+    n = int(n_s)
+
+    if command == 'up':
+        aim -= n
+    elif command == 'down':
+        aim += n
+    elif command == 'forward':
+        position += n
+        depth += aim*n
+
+print(f'Part 2: {position*depth}')
